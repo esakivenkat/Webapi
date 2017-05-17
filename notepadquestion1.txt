@@ -1,0 +1,371 @@
+Ashram Source:-
+1.allow control allow origin add chrome https
+2.Any browser script add for using key word Ctrl +U 
+3.SQL:-How to  Old Db Table value insert  new  Db Query?
+select * into Bankmaster from HotelCMDB..Bankmaster
+(select * into Tablename from Old DB..Tablename
+4.Background Image Set on Css style: style="background: url('http://115.112.175.12/KYA/Images/yoga.jpg'); background-size: 100% auto; margin-top: 0px; min-height: 850px; ">
+5.Jquery -: $('#id').val(),$('input[name="name"]').val(),$(".class")val(),$("#Id").removeClass('Class');,$("#id").removeAttr('style');
+6.simple jquery Drop Down List:-   @Html.DropDownList("Country", new SelectList(Model.CountryMaster, "Value", "Text", Model.CountryMaster), new { id = "metade", @class = "Country", style = "height:50px;" })
+7.Jquery Click funstion Syntax:- $('body').on('click','.class',function(){});
+8.the return value in Bind Partialview code-: $("#Div-id").html('returnobjname');
+9.Change Dropdown function value-: $("#Dropdownid")on('change',function(){
+if($('select[name="name"] option:selected').val()=='dropdownvalue'){
+}else{}
+10.C# program that uses string.IsNullOrEmpty:-
+The string.IsNullOrEmpty method tests strings. It checks for string references that are null or have no data.
+string s = null;
+        if (string.IsNullOrEmpty(s) == true)
+        {
+            // True.
+            Console.WriteLine("Null or empty");
+        }
+        else
+        {
+            Console.WriteLine("Not null and not empty");
+        }
+output:- Null or empty
+Check Username and password:-    
+            if (!string.IsNullOrEmpty(uname) && !string.IsNullOrEmpty(pass))
+            {}else{};
+11.What is dataset ?
+12.How To return Json resul:- 
+Public jsonresult(Return method) methodname(string Parameter)
+{
+var obj = new { return value};
+return Json(obj,JsonRequestBehavior.AllowGet);
+}
+(OR)
+Public jsonresult(Return method) methodname(string Parameter)
+{
+JsonResult result = new JsonResult();
+result.Data=list.Tolist();
+result.JsonRequestBehavior= JsonRequestBehaviorAllowGet;
+Return Result;
+13.What is serialize?
+14.I have used to User Id Identity database from source
+   [Key]
+   [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+   Any Details Refer to  URL:-(https://www.tektutorialshub.com/data-annotations-databasegenerated-attribute-entity-framework/)
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------
+Karmic RoutesIbe
+1 .What is [AllowAnonymous] Explain? [AllowAnonymous] - Any one can access view related to the action in controller.AllowAnonymous Attribute for specifying those controller actions that can be seen by anonymous(unknown) users 
+2 .What is [Authorize] Explain? [Authorize] - Only registered users or specific set of users can access view related to the action in controller
+3 .<meta> ==> Metadata is data (information) about data. The <meta> tag provides metadata about the HTML document. Metadata will not be displayed on the page, but will be machine parsable. Meta elements are typically used to specify page description, keywords, author of the document, last modified, and other metadata.
+4 .Image html tag ==> <img src="http://karmicroutes.com/images/logo.png" class="img-fluid img-responsive"
+5 .How to use Post method pass to controller => @using(@Html.BeginForm(actionname,controllerName,object route value,FormMethod,objecthtml attr))
+                            {}
+6 .@Html.LabelFor(m => m.InstitutionName, @Model.InstitutionName, new { @class = "col-sm-6 control-label", @style = "text-align: left;padding-left: 2px;color:#0b9444;font-weight:bold;" }) ===> @html.labelfor(Function ,Tproperty,string format,Objecthtmlattrbutes)
+7 .value insert Jquery method and Html label value insert jquerymethod->  $('#PartAmtToPay').val('0'); $('#lblpayamt').html('Rs.0  $0');                  
+8 .Error Log --> ErrorLog.writeAll(ErrorMsg,FileName,MethodName)
+9 .Return Partialview(Viewname,Object Model) and Return View(ViewName,Master name,Model name); 
+10.Public ActionResult Methodname()   public JsonResult Methodname()
+   {Return view()}                        {Return Json(ObjectData,JsonRequestBehavior.AllowGet);}
+11.Diff between Const and read only ==> http://www.c-sharpcorner.com/UploadFile/0c1bb2/read-only-and-constant-in-C-Sharp/
+12.How to get or insert value in stored procedure  ==>   
+   public DataSet ADM_GET_IBE_BannerAndMenuInfo(int karmicid)
+        {
+            ds = new DataSet();
+            try
+            {
+                using (SqlConnection con = new SqlConnection(constring))
+                {
+                    using (SqlCommand cmd = new SqlCommand("ADM_GET_IBE_BannerAndMenuInfo", con))
+                    {
+                        da = new SqlDataAdapter();
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@HotelID", karmicid);
+                        da.SelectCommand = cmd;
+                        da.Fill(ds);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLog.WriteAll(ex.Message, "IbeService", "ADM_GET_IBE_BannerAndMenuInfo");
+            }
+            return ds;
+        }
+   (1.What is dataset,2.Sqlconnection ,3.sqlcommand ,4.sqlDataAdapter,5.Sqlcomand,6.Using Keywords)
+13.asenumerable using datatable value get --- using System.Linq;DataTableExtensions.AsEnumerable Method (DataTable)
+14.c # using linq to group by multiple columns in a datatable ==> 
+   I have three columns in a datatable: string, DateTime, and decimal. I want to group by the string and decimal column, and for the rows grouped I want to sum the decimal values. I know how to do the sum part, but how do you group two different columns in a datatable?
+   answer==>var objectTable = new DataTable();
+   objectTable.Columns.Add("resource_name",typeof(string));
+   objectTable.Columns.Add("day_date",typeof(DateTime));
+   objectTable.Columns.Add("actual_hrs",typeof(decimal));
+   objectTable.Rows.Add(1, DateTime.Today, 1);
+   objectTable.Rows.Add(2, DateTime.Today, 2);
+
+   var newSort = from row in objectTable.AsEnumerable()
+            group row by new {ID = row.Field<string>("resource_name"), time1 = row.Field<DateTime>("day_date")} into grp
+            select new
+                {
+                    resource_name1 = grp.Key.ID,
+                    day_date1 = grp.Key.time1,
+                    Sum = grp.Sum(r => r.Field<Decimal>("actual_hrs"))
+                };
+    newSort.Dump();
+    (OR) 
+    Obj.CourseList = result.Tables[0].AsEnumerable().GroupBy(ind => new { AshramID = ind.Field<int>("AshramID"), CourseId = ind.Field<int>("CourseID") }).Select(group => new SelectListItem
+                    {
+                        Text = group.First().Field<string>("CourseName").ToString(),
+                        Value = group.First().Field<int>("CourseID").ToString()
+                    }).ToList();
+    (or)
+    How can I do GroupBy Multiple Columns in LINQ
+
+    Something similar to this in SQL:
+
+    SELECT * FROM <TableName> GROUP BY <Column1>,<Column2>
+    How can I convert this to LINQ:
+
+    QuantityBreakdown
+    (
+    MaterialID int,
+    ProductID int,
+    Quantity float
+     )
+
+    INSERT INTO @QuantityBreakdown (MaterialID, ProductID, Quantity)
+    SELECT MaterialID, ProductID, SUM(Quantity)
+    FROM @Transactions
+    GROUP BY MaterialID, ProductID
+    ANSWER ==> group x by new { x.Column1, x.Column2 }
+15. How to DataTable Value Bind the List Of value like (DropDown) ==
+    Answer =>  
+    List<SelectListItem> list = new List<SelectListItem>();
+    DataSet DsCoutrylist = service.CBO_GET_CountryMaster();
+    list = DsCoutrylist.Tables[0].AsEnumerable().Select(x => new SelectListItem()
+    {
+           Text = x.Field<string>("CountryDesc"),
+           Value = x.Field<int>("CountryID").ToString()
+    }).ToList();
+16. What is selectlistitem in mvc 5  ==> Represents the selected item in an instance of the SelectList class.
+    Text-->Gets or sets the text of the selected item.
+    Value-->Gets or sets the value of the selected item.
+    Selected-->Gets or sets a value that indicates whether this SelectListItem is selected.
+17.What Is AsEnumerable? ==> The AsEnumerable method is a generic method. It allows you to cast a specific type to its IEnumerable equivalent."," Example."," ... AsEnumerable is an extension method and you must include the System.Linq namespace to access it.
+18.How Do Paritial View Bind the View Page? ===> Create New <div> function @Html.Partial("Partialviewname",Model)</div> Then Get the value in Jquery method --> $("#DivtionID").html(response);
+19.How to default First UI Tab set in the design ==> $(function(){ $(".UIDivisionClassname li:first").addclass("active");
+20.How to view page Loading bind the value in jquery? ==> $(function(){ clickeventname('modelobjectname');});
+21.Define Alert Style Class? ===>   
+   public static class AlertStyles
+    {
+        public const string Success = "success";
+        public const string Information = "info";
+        public const string Warning = "warning";
+        public const string Danger = "danger";
+    }
+----------------------------------------------------------------------------
+AshramExtranetVss
+1 .How to use Tempdate alert From controller? TempData["AlertMessage"]="Value" then jquery Add the AlertMessage value..  
+   @if (TempData["AlertMessage"] != null)
+    {
+        <script>bootbox.alert('@TempData["AlertMessage"]');</script>
+    }
+2 .what does this do : ModelState.IsValid? ===> ModelState.IsValid will basically tell you if there is any issues with your data posted to the server, based on the data annotations added to the properties of your model.If, for instance, you have a [Required(ErrorMessage = "Please fill")], and that property is empty when you post your form to the server, ModelState will be invalid.
+3 .Difference between Model.IsValid and ModelState.IsValid? ==> ModelState stores the state of the model for the view - exceptions, valid etc.Model is the actual model - It is the class consumed by the view to display itself.
+4 .SqlParameter define?
+5 .How to connect database value in Ado.net ==> 
+   <add name="HotelBusinessDBContext" connectionString="metadata=res://*/DAL.DbContext.HotelDBContextModel.csdl|res://*/DAL.DbContext.HotelDBContextModel.ssdl|res://*/DAL.DbContext.HotelDBContextModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=GIHOS-SER-001\SQL2014;initial catalog=AshramBusinessDB;user id=sa;password=gihosp123$gihosp;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" /> 
+   using (var dbcontext = new DBContextName(HotelBusinessDBContext()) )
+   {
+   var Object Parameters = new sqlparameter {spParametername = "spParameterName",Value = "value"};
+   var return type object = DBContext.database.sqlquery<objreturntypeQuery>("SPName SQL Parameters",Object Parameters).Tolist or FirstOrDefault
+   return obj;
+   }
+(or) 
+ simply work coding 
+List<sss> li = new List<sss(); 
+   using(sqlconnection con =new sqlconection (configurationmanager.Connectionstring["ss"].connectionstring))
+{
+  using (sqlcommand cmd =new sqlcommand ("sp_name",con))
+{
+con.open();
+cmd.parameter.addwithvalue("@sp_paramname",Paramvalue);
+sqldatareader dr = cmd.executereader();
+while(dr.Read())
+{
+Object city name((objcity.city) = dr["city"].Tostring();
+li.add(objcity);
+}
+}
+}
+   
+6 .What is Session.Abandon Method?==>(Session.Abandon();)  ((Session state is only maintained for browsers that support cookies))
+   The Abandon method destroys all the objects stored in a Session object and releases their resources. If you do not call the Abandon method explicitly, the server destroys these objects when the session times out
+7 .How To check validatate Html attributes ? 
+    @Html.ValidationSummary(true)
+    @Html.ValidationMessageFor(model name ,Tproperty Expression ,string validation,object Html attributes) like =>  @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "validmsg" })
+8 .what is base controller? ==> 
+   Instead of repeating common actions on your code try to implement abstract classes to do the job.
+   Every controller in ASP.NET MVC deals with TempMessages, ViewBags, new instances of classes and many more.can be accessible by all the derived controllers
+*9.string name == > The variable name is declared but never used. string name ="dd";==> The value is assigned but its values is never used.  string name = m.RoomPhotoName; ==> string value name declared
+**  var name = ""; ==> Variable name is assinged but Its value never used.Variable name must be initialized. var li = objhotelrep.GetHotelPolicy(HotelId); ==> variable name get the return value.
+10.What is StringBuilder? String Builder is a Memory allocation for String. To solve this problem, C# introduced StringBuilder. StringBuilder is a dynamic object that allows you to expand the number of characters in the string. It doesn't create a new object in the memory but dynamically expands memory to accommodate the modified string.Use Append method of StringBuilder to add or append a string to StringBuilder
+   StringBuilder sb = new StringBuilder();
+            
+   //or
+
+   StringBuilder sb = new StringBuilder("Hello World!!");
+11.Create a string?==>
+   Create a string using a constructor
+   Create a string from a literal
+   Create a string using concatenation
+   Create a string using a property or a method
+   Create a string using formatting
+12.@type = "number"  ==> This method used to automativ generate number for drop down in text box
+13.What is the serialization in C#?Serialization is the process of converting an object into a stream of bytes in order to store the object or transmit it to memory, a database, or a file. Its main purpose is to save the state of an object in order to be able to recreate it when needed. The reverse process is called deserialization
+14.What is the use of XML serialization?Serialization is the process of converting an object into a form that can be readily transported. For example, you can serialize an object and transport it over the Internet using HTTP between a client and a server. ... XML serialization serializes only the public fields and property values of an object into an XML stream.
+15.What is deserialize XML?Deserialization on the other hand is used to convert the byte of data, such as XML or binary data, to object type. Serialization is the process of converting an object into a form that can be readily transported.
+            serialization                              Deserialization
+                                 --->File     |
+   Object ------->Stream of bytes--->DataBase |----->Stream of bytes-------->Object
+                                 --->Memory   |
+16.How To One Or More Text Box Add Or Remove In the partil view Method?
+   First Create The Model Constructor ==> 
+   Public Class ClassName1
+   { 
+     Public ClassName1()
+   { 
+     Obj1=new Classname2();
+   }
+   public Classname2 Obj1{get;set;}
+   public class Classname2
+   { 
+    public ClassName2()
+   {  
+     ClassName3 = new List<ClassName3>();
+   }
+   Public List<ClassName3> ClassName3 {get;set;}
+   }
+   Public Class Classname3
+   {
+   Get the list of object;
+   }
+   Create The Controller :-
+   *ADD ==> 
+   public ActionResult _Cost(AshramCourseScheduleViewModel m)
+   {
+     m.obj1.Classname3.Add(new Models.Classname1.Classname3() { });
+     return PartialView(m);   
+   }
+   *REMOVE ==>
+   Public ActionResult _RemoveCost(AshramCourseScheduleViewModel m)
+    {
+            m.obj1.Classname3.RemoveAt(m.obj1.Classname3.Count - 1);
+            return PartialView("_Cost", m);
+    }
+    Create the view:-
+   @if (Model.obj1.Classname3.Count == items.index + 1)
+                    {
+                        <i  id="AddMoreSubtitle"  ></i>
+                   
+                        @Html.Raw("&nbsp;")
+                        if (items.index != 0)
+                        {
+                            <i id="RemoveSubtitle"></i>
+                               
+                        }
+                    }
+
+    I have Click on the button Then Pass The value in Controller Used Jquery Post Method.
+17. when i try to display text from my database, i can't show the text with line break?==>
+    @Html.RAW() Means -->  Text output will generally be HTML encoded. Using Html.Raw allows you to output text containing html elements to the client, and have them still be rendered as such. Should be used with caution, as it exposes you to cross site scripting vulnerabilities.
+
+     Controller:-
+    ***StringBuilder is models
+     public ActionResult About()
+        {
+           
+
+            StringBuilder htmlOutput = new StringBuilder();
+            htmlOutput.Append("<p>The image below is from ");
+            htmlOutput.Append("<a href=\"http://i.s-microsoft.com/global/ImageStore/PublishingImages/FY13/Asset/features/WPbuy_BG_0225_1600x540_EN_US.jpg\">Microsoft</a>");
+            htmlOutput.Append("</p>");
+            htmlOutput.Append("<img src=\"http://i.s-microsoft.com/global/ImageStore/PublishingImages/FY13/Asset/features/WPbuy_BG_0225_1600x540_EN_US.jpg\" alt=\"Microsoft\" title=\"Microsoft\"/>");
+            ViewBag.HtmlOutput = htmlOutput.ToString();
+            return View();
+        }
+     Views:-
+     @Html.Raw(ViewBag.HtmlOutput)
+18.Explain RenderBody, RenderPage and RenderSection Methods in MVC 3 ==> https://www.codeproject.com/Articles/383145/RenderBody-RenderPage-and-RenderSection-methods-in
+-------------------------------------------------------------------------------
+1 .What's the difference between struct and class in .NET?
+
+   *Classes Only:
+   Can support inheritance
+   Are reference (pointer) types
+   The reference can be null
+   Have memory overhead per new instance
+   
+   *Structs Only:
+   Cannot support inheritance
+   Are value types
+   Are passed by value (like integers)
+   Cannot have a null reference (unless Nullable is used)
+   Do not have a memory overhead per new instance - unless 'boxed'
+
+   *Both Classes and Structs:
+   Can contain methods and events
+   Can support interfaces 
+2 .static void main(string args) c# ?
+   The enclosing class or struct is not required to be static.
+   Main can either have a void or int return type.
+   The Main method can be declared with or without a string[] parameter that contains command-line arguments
+   In C#, Main is capitalized, while Java uses lowercase main.
+   Main can only return int or void,
+   (String[] argus) ---> has an optional string array argument to represent command-line parameters: static int Main(string[] args).
+3 .What IS String[]? string[] cityname={"Chennai","Madurai"}; Array of string
+4 .What is JSON? ==> JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write and easy for machines to parse and generate. JSON is a text format that is completely language independent. 
+   JSON supports the following two data structures ==> 1.Collection of name/value pairs, 2.Ordered list of values 
+   JSON has following style  ==> 1.Object = var user = {"name":"Manas","gender":"Male","birthday":"1987-8-8"} ,2.Array = var userlist = [{"user":{"name":"Manas","gender":"Male","birthday":"1987-8-8"}},{"user":{"name":"Mohapatra","Male":"Female","birthday":"1987-7-7"}}] , 3.String = var userlist = "{\"ID\":1,\"Name\":\"Manas\",\"Address\":\"India\"}".
+5 .Samples:- 1.Serializing JSON, 2.LINQ to JSON, 3.JSON Schema, 4.Converting XML
+6 .WebRequest Class:- Makes a Request To a Uniform resource Identifier(uri).This is an abstract class.
+7 .HttpWebRequest Class:- Provides an HTTP-specific  implementation of the WebRequest class.
+8 .HttpWebResponse Class:- Provides an HTTP-specific implementation of the WebResponse class.
+9 .StreamReader Class:- Implements a TextReader that reads characters from a byte stream in a particular encoding
+10.SqlDataAdapter ==> Communication Between The Dataset and the SQL Database.We can use SQLDATAADAPter Object in Combination with Dataset Object
+11.What is the use of data set in Ado net? 
+   An ADO.NET DataSet contains a collection of zero or more tables represented by DataTable objects.The DataTableCollection contains all the DataTable objects in a DataSet.
+12.Ado.net method Steps? 
+   1.Create a query string.
+   2.Create a connection object and open it.//( SqlConnection con; and con.open) //
+   3.Create a SqlDataAdapter object there With the query string and connection object.//( SqlDataAdapter adapter ; and  adapter.SelectCommand = con;)
+   4.Create a DataSet object. //( DataSet ds = new DataSet(); )//
+   5.Use the Fill method of SqlDataAdapter object to fill the DataSet with the result of query string //(da.Fill(ds);)//
+   6.Close the connection object.//(con.Close(); )//
+13.HttpContext Class ==> Encapsulates all HTTP-specific information about an individual HTTP request.
+14.How to date Time Validation ==> DateTime.Now.AddDays(-1).ToString("ddMMyyyyy")
+--------------------------------------------------------------------------------------------
+ASP.NET Web API Tutorials:-
+ 1.What is Web API?
+   *The ASP.NET Web API is an extensible framework for building HTTP based services that can be accessed in different applications on different platforms such as web, windows, mobile etc.
+   *It works more or less the same way as ASP.NET MVC web application except that it sends data as a response instead of html view.like ( a webservice or WCF service but the exception is that it only supports HTTP protocol.)
+ 2.ASP.NET Web API Characteristics?
+   *ASP.NET Web API is an ideal platform for building RESTful services.
+   *ASP.NET Web API is built on top of ASP.NET and supports ASP.NET request/response pipeline.
+   *ASP.NET Web API maps HTTP verbs to method names.
+   *ASP.NET Web API supports different formats of response data. Built-in support for JSON, XML, BSON format.
+   *ASP.NET Web API can be hosted in IIS, Self-hosted or other web server that supports .NET 4.0+.
+   *ASP.NET Web API framework includes new HttpClient to communicate with Web API server. HttpClient can be used in ASP.MVC server side, Windows Form application, Console application or other apps.
+ 3.ASP.NET Web API Versions?
+   Suport Verson     - Web api 1        and WebApi 2 (Current)
+   Support framework - .NetFramework 4.0 - .NetFramework 4.5
+   Support Coincides -  MVC4             -  MVC5
+   Support vSS       -  vss 2010         - vss 2012,2013
+ 4.ASP.NET Web API vs WCF?
+   *Open source and ships with .NET framework                                >< ships with .NET framework
+   *Supports only HTTP protocol                                              >< Supports HTTP, TCP, UDP and custom transport protocol.
+   *Uses http verbs to methods                                               >< Uses attributes based programming model.
+   *Uses routing and controller concept similar to ASP.NET MVC.              >< Uses Service, Operation and Data contracts.
+   *Does not support Reliable Messaging                                      >< Supports Reliable Messaging 
+   *It can be configured using HttpConfiguration class but not in web.config.>< Uses web.config and attributes to configure a service.
+   *WepAPI ideal(aettrathaga) for building RESTful HTTP based services.      >< Supports RESTful services
+   *WepAPI using .NET framework 4.0 or above.                                >< use .NET Framework 3.5.
