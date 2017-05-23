@@ -1,0 +1,106 @@
+When to Use Abstract Class in C#, Real World Example
+Introduction
+It is a very common discussion when to use Abstract class and what is the benefit of using Abstract class in real time application development. The common properties of Abstract class are it cannot be initiated, functions and implementation can be partially implemented.
+
+Consider an application that calculates salary of full time and contract based employees. There are few common properties of both employees, e.g., both employees have name, address, ID, but different way of calculating salaries. So we can declare one master class named as BaseEmployee and place common properties and Virtual Salary Calculator function with no implementation. Two child classes, FullTimeEmployee and ContractEmployee can inherit from BaseEmployee class and override Salary Calculator virtual function and our problem can be solved, then why Abstract Class should be used?
+namespace AbstractClassExample
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //BaseEmployee Object is created with no compilation error
+            BaseEmployee baseEmployee = new BaseEmployee();
+            baseEmployee.EmployeeID = "EMP001";
+            baseEmployee.EmployeeAddress = "3400 Lee Highway, VA 22031";
+            baseEmployee.EmployeeName = "John Doe";
+
+            BaseEmployee fullTimeEmployee = new FullTimeEmployee();
+            var fteSalary = fullTimeEmployee.CalculateSalary(40);
+
+            //Base Employee Calculate Salary can be called that shouldn't be accessible
+            var baseSalary = baseEmployee.CalculateSalary(34);
+        }
+    }
+
+    public class BaseEmployee
+    {
+        public string EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
+        public string EmployeeAddress { get; set; }
+
+        public virtual double CalculateSalary(int hoursWorked)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class FullTimeEmployee : BaseEmployee
+    {
+        public override double CalculateSalary(int hoursWorked)
+        {
+            return hoursWorked * 60.00+4000;
+        }
+    }
+
+    public class ContractEmployee : BaseEmployee
+    {
+        public override double CalculateSalary(int hoursWorked)
+        {
+            return hoursWorked * 65.00;
+        }
+    }
+}
+
+The problem with this inheritance approach is more like logical and business issue, in inheritance we can simply create BaseEmployee object and nothing can stop us which is wrong, usually any normal company does not have any BaseEmployee type employee, so if we want to stop user from accidentally creating a BaseEmployee class object we should declare this class and Salary Calculator as Abstract so that it can only be inherited but not initiated.
+namespace AbstractClassExample
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /*BaseEmployee Object can not be created since this is declared as Abstract
+            Following LOCs will return compilation error if uncommented.*/
+
+            //BaseEmployee baseEmployee = new BaseEmployee();
+            //baseEmployee.EmployeeID = "EMP001";
+            //baseEmployee.EmployeeAddress = "3400 Lee Highway, VA 22031";
+            //baseEmployee.EmployeeName = "John Doe";
+
+            //Base Employee Calculate Salary can be called that shouldn't be accessible
+            //var baseSalary = baseEmployee.CalculateSalary(34);
+
+            //Full Time and Contract Employees objects are successfully created.
+            BaseEmployee fullTimeEmployee = new FullTimeEmployee();
+            var fteSalary = fullTimeEmployee.CalculateSalary(40);
+
+            BaseEmployee contractEmployee = new ContractEmployee();
+            var CteSalary = contractEmployee.CalculateSalary(40);
+        }
+    }
+
+    public abstract class BaseEmployee
+    {
+        public string EmployeeID { get; set; }
+        public string EmployeeName { get; set; }
+        public string EmployeeAddress { get; set; }
+
+        public abstract double CalculateSalary(int hoursWorked);
+    }
+
+    public class FullTimeEmployee : BaseEmployee
+    {
+        public override double CalculateSalary(int hoursWorked)
+        {
+            return hoursWorked * 60.00+3700;
+        }
+    }
+
+    public class ContractEmployee : BaseEmployee
+    {
+        public override double CalculateSalary(int hoursWorked)
+        {
+            return hoursWorked * 65.00;
+        }
+    }
+}
